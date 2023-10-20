@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_700"
+    android:background="@drawable/background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.quizfragment.QuizFragment">
 
@@ -15,6 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+
         android:visibility="gone"
         tools:ignore="MissingConstraints">
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -81,7 +82,9 @@
                     android:id="@+id/tvProgress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1/10"
+                    android:text="10 s"
+                    android:padding="5dp"
+                    android:background="@color/shimmercolor"
                     />
             </LinearLayout>
 

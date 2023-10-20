@@ -130,7 +130,7 @@ class QuizFragment : Fragment() {
                     val progress = ((remainingTimeMillis - millisUntilFinished) / intervalInMillis).toInt()
                     // safeBinding.quiz.text=progress.toString()
 
-                    safeBinding.tvProgress.text = "${millisUntilFinished / 1000} /10"
+                    safeBinding.tvProgress.text = "${millisUntilFinished / 1000} s"
                     safeBinding.timeProgressBar.progress = progress
                 }
             }

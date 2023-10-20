@@ -13,7 +13,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val repository: QuizRepository): ViewModel() {
-    private val TAG = "MainViewModel"
+
+
+    val  highestScore: LiveData<Int> = repository.highestScore
 
 
 }
