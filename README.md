@@ -12,8 +12,8 @@ The Quizler Hero - App was created using Kotlin, clean architecture, networking,
 **Screenshots:**
   <table>
   <tr>
-     <td>Main Menu Screen</td>
-     <td>Q&A Screen</td>
+     <td>Main Menu </td>
+     <td>Question/Answer Page</td>
   </tr>
   <tr>
     <td><img src="app/screenshots/mainmenu.jpeg" width=300 ></td>
