@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/guideline_end"
-        android:background="@color/shimmercolor2"
+        android:background="@drawable/bg_shimmercard"
         android:padding="20dp"
         android:layout_marginTop="20dp"
 
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:background="@color/shimmercolor"
+            android:background="@drawable/bg_shimmercard"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
 
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:background="@color/shimmercolor"
+            android:background="@drawable/bg_shimmercard"
             android:textColor="@color/black"
             android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/card1"
         app:layout_constraintEnd_toEndOf="@+id/guideline_end"
 
-        android:background="@color/shimmercolor2"
+        android:background="@drawable/bg_shimmercard"
 
         android:padding="20dp"
         android:layout_marginTop="30dp"
@@ -100,7 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:background="@color/shimmercolor"
+            android:background="@drawable/bg_shimmercard"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +117,7 @@
             android:textStyle="bold"
             android:textColor="@color/black"
             android:src="@drawable/logo"
-            android:background="@color/shimmercolor"
+            android:background="@drawable/bg_shimmercard"
             app:layout_constraintEnd_toEndOf="@+id/txt_point"
             app:layout_constraintStart_toStartOf="@+id/txt_point"
             app:layout_constraintTop_toBottomOf="@+id/txt_point"
@@ -128,7 +128,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:background="@color/shimmercolor"
+            android:background="@drawable/bg_shimmercard"
             app:layout_constraintStart_toStartOf="@+id/image"
             app:layout_constraintEnd_toEndOf="@+id/image"
             app:layout_constraintTop_toBottomOf="@+id/image"
@@ -148,14 +148,14 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintEnd_toEndOf="@+id/guideline_end"
         app:layout_constraintTop_toBottomOf="@id/card2"
-        android:background="@color/shimmercolor2"
+        android:background="@drawable/bg_shimmercard"
         android:textColor="@color/black"
         />
 
     <TextView
         android:id="@+id/optionTwo"
         style="@style/toggleButton"
-        android:background="@color/shimmercolor2"
+        android:background="@drawable/bg_shimmercard"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/optionOne"
         app:layout_constraintEnd_toEndOf="@+id/optionOne"
@@ -167,7 +167,7 @@
         style="@style/toggleButton"
 
         android:textColor="@color/black"
-        android:background="@color/shimmercolor2"
+        android:background="@drawable/bg_shimmercard"
         app:layout_constraintStart_toStartOf="@+id/optionTwo"
         app:layout_constraintEnd_toEndOf="@+id/optionTwo"
         app:layout_constraintTop_toBottomOf="@+id/optionTwo"
@@ -181,7 +181,7 @@
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@color/shimmercolor2"
+        android:background="@drawable/bg_shimmercard"
 
         app:layout_constraintStart_toStartOf="@+id/optionThree"
         app:layout_constraintEnd_toEndOf="@+id/optionThree"
