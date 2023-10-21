@@ -85,37 +85,47 @@ class QuizViewModel @Inject constructor(private val repository: QuizRepository):
 
 
 
-
-    private val _progress = mutableStateOf(0)
+    // The current progress of the bar, encapsulated in a mutable State
+    private val _progress = mutableStateOf(1)
     val progress: State<Int> = _progress
 
-    private val _isRunning = mutableStateOf(false)
-    val isRunning: State<Boolean> = _isRunning
-
+    // A reference to the background job that updates the progress
     private var job: Job? = null
 
+    // A callback to execute when the progress is complete
     private var onProgressComplete: (() -> Unit)? = null
 
+    /**
+     * Set a callback to be invoked when the progress completes.
+     *
+     * @param listener The function to be executed when the progress reaches completion.
+     */
     fun setOnProgressCompleteListener(listener: () -> Unit) {
         onProgressComplete = listener
     }
 
+    /**
+     * Start the progress bar and update its state over a duration of 10 seconds.
+     * The callback set with [setOnProgressCompleteListener] will be executed upon completion.
+     */
     fun startProgressBar() {
+        // Cancel any existing job to avoid multiple progress updates
         job?.cancel()
-        _isRunning.value = true
         job = viewModelScope.launch {
             for (i in 1..10) {
                 delay(1000) // Update the progress every second (10 seconds total).
                 _progress.value = i
             }
-            _isRunning.value = false
+            // Invoke the completion callback, if set
             onProgressComplete?.invoke()
         }
     }
 
+    /**
+     * Cancel the progress bar, stopping any ongoing progress updates.
+     */
     fun cancelProgressBar() {
         job?.cancel()
-        _isRunning.value = false
     }
 
 }
