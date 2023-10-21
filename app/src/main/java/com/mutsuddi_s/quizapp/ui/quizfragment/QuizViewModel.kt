@@ -1,6 +1,9 @@
 package com.mutsuddi_s.quizapp.ui.quizfragment
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mutsuddi_s.quizapp.data.model.Question
@@ -8,6 +11,8 @@ import com.mutsuddi_s.quizapp.data.repository.QuizRepository
 import com.mutsuddi_s.quizapp.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -77,4 +82,40 @@ class QuizViewModel @Inject constructor(private val repository: QuizRepository):
     fun setCurrentIndexZero() {
         repository.setCurrentIndexZero()
     }
+
+
+
+
+    private val _progress = mutableStateOf(0)
+    val progress: State<Int> = _progress
+
+    private val _isRunning = mutableStateOf(false)
+    val isRunning: State<Boolean> = _isRunning
+
+    private var job: Job? = null
+
+    private var onProgressComplete: (() -> Unit)? = null
+
+    fun setOnProgressCompleteListener(listener: () -> Unit) {
+        onProgressComplete = listener
+    }
+
+    fun startProgressBar() {
+        job?.cancel()
+        _isRunning.value = true
+        job = viewModelScope.launch {
+            for (i in 1..10) {
+                delay(1000) // Update the progress every second (10 seconds total).
+                _progress.value = i
+            }
+            _isRunning.value = false
+            onProgressComplete?.invoke()
+        }
+    }
+
+    fun cancelProgressBar() {
+        job?.cancel()
+        _isRunning.value = false
+    }
+
 }

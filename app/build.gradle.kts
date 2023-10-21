@@ -33,6 +33,10 @@ android {
     }
     buildFeatures{
         viewBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.3"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -75,12 +79,6 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.4")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.4")
 
-    //Room
-    var room_version = "2.5.2"
-    implementation ("androidx.room:room-runtime:2.5.2")
-    implementation ("androidx.room:room-ktx:$room_version")
-    ksp ("androidx.room:room-compiler:2.5.2")
-    implementation ("androidx.room:room-paging:$room_version")
 
     //dagger-hilt
     implementation("com.google.dagger:hilt-android:2.48")
@@ -94,4 +92,17 @@ dependencies {
 
     //shimmer-effect
     implementation("com.facebook.shimmer:shimmer:0.5.0")
+
+    //jetpack compose
+    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-graphics")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
+
+    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
 }

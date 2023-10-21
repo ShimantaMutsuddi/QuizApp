@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.compose.runtime.Composable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -21,11 +22,10 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.snackbar.Snackbar
 import com.mutsuddi_s.quizapp.R
 import com.mutsuddi_s.quizapp.data.model.Question
-import com.mutsuddi_s.quizapp.databinding.FragmentHomeBinding
 import com.mutsuddi_s.quizapp.databinding.FragmentQuizBinding
-import com.mutsuddi_s.quizapp.ui.common.MainActivity
 import com.mutsuddi_s.quizapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
+
 
 
 @AndroidEntryPoint
@@ -43,7 +43,7 @@ class QuizFragment : Fragment() {
     var totalQestion = 0
 
     // CountDownTimer for the quiz timer
-    private lateinit var countDownTimer: CountDownTimer
+    //private lateinit var countDownTimer: CountDownTimer
     private var remainingTimeMillis: Long = 10000
     private val intervalInMillis: Long = 1000
     private val handler = Handler(Looper.getMainLooper())
@@ -73,7 +73,8 @@ class QuizFragment : Fragment() {
                     if (questions?.isNotEmpty()!!) {
                         viewModel.currentIndex.observe(viewLifecycleOwner, Observer { currentIndex ->
 
-                            countDownTimer.start()
+                            //countDownTimer.start()
+                            viewModel.startProgressBar()
                             resetAnswerOptionStyles()
                             displayQuestion(questions[currentIndex],currentIndex)
 
@@ -94,6 +95,7 @@ class QuizFragment : Fragment() {
 
                 is Resource.Loading ->{
 
+
                 }
 
             }
@@ -101,7 +103,7 @@ class QuizFragment : Fragment() {
         }
 
         // Set up the time progress bar based on the remaining time
-        binding.timeProgressBar.max = (remainingTimeMillis / intervalInMillis).toInt()
+       // binding.timeProgressBar.max = (remainingTimeMillis / intervalInMillis).toInt()
 
         // Observe the player's score
         viewModel.score.observe(viewLifecycleOwner){
@@ -119,8 +121,17 @@ class QuizFragment : Fragment() {
             }
         }
 
+        //check
+        binding.composeTimer.setContent {
+            timer()
+        }
+
+        viewModel.setOnProgressCompleteListener {
+           viewModel.moveToNextQuestion()
+        }
+
         // Initialize the CountDownTimer
-        countDownTimer = object : CountDownTimer(remainingTimeMillis, intervalInMillis) {
+        /*countDownTimer = object : CountDownTimer(remainingTimeMillis, intervalInMillis) {
             override fun onTick(millisUntilFinished: Long) {
 
 
@@ -131,7 +142,7 @@ class QuizFragment : Fragment() {
                     // safeBinding.quiz.text=progress.toString()
 
                     safeBinding.tvProgress.text = "${millisUntilFinished / 1000} s"
-                    safeBinding.timeProgressBar.progress = progress
+                   // safeBinding.timeProgressBar.progress = progress
                 }
             }
 
@@ -144,7 +155,13 @@ class QuizFragment : Fragment() {
                 }
                 viewModel.moveToNextQuestion()
             }
-        }
+        }*/
+    }
+
+    @Composable
+    fun timer(){
+
+        ProgressBar(viewModel)
     }
 
 
@@ -272,7 +289,8 @@ class QuizFragment : Fragment() {
 
     private fun checkAnswer(question: Question, selectedAnswer: String, option: TextView) {
 
-        countDownTimer.cancel()
+
+        viewModel.cancelProgressBar()
         val correctAnswer = question.correctAnswer
         val answerMap = mapOf(
             "A" to question.answers.A,

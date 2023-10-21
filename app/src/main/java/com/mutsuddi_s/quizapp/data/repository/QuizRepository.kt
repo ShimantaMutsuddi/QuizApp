@@ -59,7 +59,7 @@ class QuizRepository @Inject constructor(
             try {
                 val result = apiInterface.getAllQues()
                 Log.d(TAG, "getAllQuestions: $result}")
-                if (result?.body() != null) {
+                if (result.body() != null) {
                     _questions.postValue(Resource.Success(result.body()!!.questions))
                 } else {
                     _questions.postValue(Resource.Error("Network Failure"))
