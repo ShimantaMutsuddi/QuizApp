@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
 
         viewModel.highestScore.observe(viewLifecycleOwner){
 
-            binding.score.text="${it.toString()} point"
+            binding.score.text="${it.toString()} Point"
 
         }
         binding.btnStart.setOnClickListener {

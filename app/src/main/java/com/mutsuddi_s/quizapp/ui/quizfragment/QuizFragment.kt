@@ -2,7 +2,6 @@ package com.mutsuddi_s.quizapp.ui.quizfragment
 
 import android.graphics.Color
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
@@ -15,7 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -23,6 +21,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.mutsuddi_s.quizapp.R
 import com.mutsuddi_s.quizapp.data.model.Question
 import com.mutsuddi_s.quizapp.databinding.FragmentQuizBinding
+import com.mutsuddi_s.quizapp.utils.ProgressBar
 import com.mutsuddi_s.quizapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -44,8 +43,8 @@ class QuizFragment : Fragment() {
 
     // CountDownTimer for the quiz timer
     //private lateinit var countDownTimer: CountDownTimer
-    private var remainingTimeMillis: Long = 10000
-    private val intervalInMillis: Long = 1000
+    //private var remainingTimeMillis: Long = 10000
+    //private val intervalInMillis: Long = 1000
     private val handler = Handler(Looper.getMainLooper())
 
     // TAG for logging purposes
@@ -81,8 +80,6 @@ class QuizFragment : Fragment() {
 
 
                         })
-                    } else {
-
                     }
                 }
 
@@ -94,6 +91,8 @@ class QuizFragment : Fragment() {
 
 
                 is Resource.Loading ->{
+
+                    startShimmer()
 
 
                 }
@@ -108,7 +107,7 @@ class QuizFragment : Fragment() {
         // Observe the player's score
         viewModel.score.observe(viewLifecycleOwner){
             Log.d(TAG, "onViewCreated: $it")
-            binding.score.text="Score: $it"
+            binding.score.text="Score: $it Points"
         }
 
         // Observe navigation events
@@ -248,7 +247,7 @@ class QuizFragment : Fragment() {
 
         // Set the question text and score
         binding.question.text = question.question
-        binding.txtPoint.text = question.score.toString()
+        binding.txtPoint.text = "${question.score} Points"
 
 
 
