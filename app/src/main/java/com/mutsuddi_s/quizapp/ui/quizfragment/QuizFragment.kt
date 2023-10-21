@@ -107,7 +107,7 @@ class QuizFragment : Fragment() {
         // Observe the player's score
         viewModel.score.observe(viewLifecycleOwner){
             Log.d(TAG, "onViewCreated: $it")
-            binding.score.text="Score: $it Points"
+            binding.score.text="Score: $it "
         }
 
         // Observe navigation events
@@ -120,7 +120,7 @@ class QuizFragment : Fragment() {
             }
         }
 
-        //check
+        // Set content fot Compose view
         binding.composeTimer.setContent {
             timer()
         }
@@ -247,7 +247,7 @@ class QuizFragment : Fragment() {
 
         // Set the question text and score
         binding.question.text = question.question
-        binding.txtPoint.text = "${question.score} Points"
+        binding.txtPoint.text = "${question.score} Point"
 
 
 
